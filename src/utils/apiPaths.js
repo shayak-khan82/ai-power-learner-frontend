@@ -1,4 +1,4 @@
-export const BASE_URL = "https://ai-power-learner-backend2-6.onrender.com/"
+export const BASE_URL = "https://ai-power-learner-backend2-6.onrender.com"
 
 export const API_PATHS = {
     AUTH: {

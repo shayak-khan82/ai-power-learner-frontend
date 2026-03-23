@@ -65,7 +65,7 @@ const getPdfUrl = () => {
   if (filePath.includes("localhost:8000")) {
     filePath = filePath.replace(
       "http://localhost:8000",
-      "https://ai-power-learner-backend2-6.onrender.com/"
+      "https://ai-power-learner-backend2-6.onrender.com"
     );
   }
 

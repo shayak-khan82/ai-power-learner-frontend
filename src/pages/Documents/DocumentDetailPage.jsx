@@ -44,18 +44,41 @@ const  DocumentDetailPage = () => {
 //   const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000'
 //   return `${baseUrl}${filePath.startsWith('/') ? '' : '/'}${filePath}`
 //  }
+// const getPdfUrl = () => {
+//   if (!document?.filePath) return null
+
+//   const filePath = document.filePath
+
+//   if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+//     return filePath
+//   }
+
+//   const baseUrl = process.env.REACT_APP_API_URL || 'https://ai-power-learner-backend2-4.onrender.com'
+//   return `${baseUrl}${filePath.startsWith('/') ? '' : '/'}${filePath}`
+// }
 const getPdfUrl = () => {
-  if (!document?.filePath) return null
+  if (!document?.filePath) return null;
 
-  const filePath = document.filePath
+  let filePath = document.filePath;
 
-  if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-    return filePath
+  // 🔥 FIX: replace localhost with production URL
+  if (filePath.includes("localhost:8000")) {
+    filePath = filePath.replace(
+      "http://localhost:8000",
+      "https://ai-power-learner-backend2-6.onrender.com/"
+    );
   }
 
-  const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000'
-  return `${baseUrl}${filePath.startsWith('/') ? '' : '/'}${filePath}`
-}
+  // if already full URL (after fix), return it
+  if (filePath.startsWith("http")) {
+    return filePath;
+  }
+
+  const baseUrl =
+    "https://ai-power-learner-backend2-4.onrender.com";
+
+  return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
+};
 
 //  const renderContent = () => {
 //   if (loading) {

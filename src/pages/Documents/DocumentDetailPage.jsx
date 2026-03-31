@@ -79,23 +79,34 @@ const  DocumentDetailPage = () => {
 
 //   return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
 // };
+// const getPdfUrl = () => {
+//   if (!document?.filePath) return null;
+
+//   let filePath = document.filePath;
+
+//   const baseUrl = "https://ai-power-learner-backend2-6.onrender.com";
+
+//   // If already full URL → fix domain if needed
+//   if (filePath.startsWith("http")) {
+//     return filePath.replace(
+//       "http://localhost:8000",
+//       baseUrl
+//     );
+//   }
+
+//   // Otherwise build full URL
+//   return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
+// };
 const getPdfUrl = () => {
   if (!document?.filePath) return null;
 
-  let filePath = document.filePath;
-
   const baseUrl = "https://ai-power-learner-backend2-6.onrender.com";
 
-  // If already full URL → fix domain if needed
-  if (filePath.startsWith("http")) {
-    return filePath.replace(
-      "http://localhost:8000",
-      baseUrl
-    );
-  }
+  let fullUrl = document.filePath.startsWith("http")
+    ? document.filePath.replace("http://localhost:8000", baseUrl)
+    : `${baseUrl}${document.filePath.startsWith("/") ? "" : "/"}${document.filePath}`;
 
-  // Otherwise build full URL
-  return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
+  return encodeURI(fullUrl); // 🔥 FIX FOR SPACES
 };
 
 //  const renderContent = () => {
